@@ -14,11 +14,15 @@
     <nav>
       <div class="nav-wrapper">
         <ul>
-          <li><a href="/" class="left brand-logo">&nbsp;&nbsp; HOME</a></li>
+          <li><a href="{url 'home' %}"class="left brand-logo">Rita Salt</a></li>
+         <li><a href="{% url 'book_appointment' %}">Book Appointment</a></li> 
         </ul>
         <ul class="right">
-          <li><a href="/about">About</a></li>
-        </ul>
+           <li><a href="{% url 'flashes' %}">View Flash</a></li> 
+
+     
+        
+          </ul>
       </div>
     </nav>
   </header>

@@ -1,11 +1,25 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .forms import AppointmentForm 
+from .models import Flash
 
+def book_appointment(request):
+    if request.method == 'POST':
+        form = AppointmentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('appointment_success')  # Redirect to a success page or the appointment detail page
+    else:
+        form = AppointmentForm()
+    return render(request, 'appointments/new.html', {'form': form}) 
 
+# views.py
 
-# Define the home view
 def home(request):
-  # Include an .html file extension - unlike when rendering EJS templates
-  return render(request, 'home.html') 
-#about view
-def about(request):
-    return render(request, 'about.html')
+    # You can add more context or logic here as needed
+    return render(request, 'home.html')  # Ensure 'home.html' exists in your templates directory
+
+
+
+def flash_list(request):
+    flashes = Flash.objects.all()  # Make sure you have a Flash model and it's imported
+    return render(request, 'flash/list.html', {'flashes': flashes})

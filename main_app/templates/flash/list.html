@@ -1,0 +1,15 @@
+<!-- templates/flash/list.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Available Tattoo Designs</h2>
+  <div>
+    {% for flash in flashes %}
+      <div>
+        <h3>{{ flash.name }}</h3>
+        <img src="{{ flash.image.url }}" alt="{{ flash.name }}">
+        <p>{{ flash.description }}</p>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
