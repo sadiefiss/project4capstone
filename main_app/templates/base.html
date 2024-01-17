@@ -14,15 +14,16 @@
     <nav>
       <div class="nav-wrapper">
         <ul>
-          <li><a href="{url 'home' %}"class="left brand-logo">Rita Salt</a></li>
-         <li><a href="{% url 'book_appointment' %}">Book Appointment</a></li> 
+          <li><a href="{% url 'home' %}" class="left brand-logo">Rita Salt</a></li>
+          {% if user.is_authenticated %}
+            <li><a href="{% url 'book_appointment' %}">Book Appointment</a></li>
+            <li><a href="{% url 'flashes' %}">View Flash</a></li>
+            <li><a href="{% url 'logout' %}">Log Out</a></li>
+          {% else %}
+            <li><a href="{% url 'login' %}">Log In</a></li>
+            <!-- Optionally, add a sign-up link here if you have a sign-up view -->
+          {% endif %}
         </ul>
-        <ul class="right">
-           <li><a href="{% url 'flashes' %}">View Flash</a></li> 
-
-     
-        
-          </ul>
       </div>
     </nav>
   </header>
@@ -31,7 +32,7 @@
     {% endblock %}
   </main>
   <footer class="page-footer">
-    <div class="right">All Rights Reserved, &copy; 2024 RITA SALT  &nbsp;</div>
+    <div class="right">All Rights Reserved, &copy; 2024 RITA SALT &nbsp;</div>
   </footer>
 </body>
 </html>
