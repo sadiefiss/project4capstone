@@ -2,6 +2,8 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    background: url('/static/images/stars.jpg') no-repeat center center fixed;
+    background-size: cover;
   }
   
   main {

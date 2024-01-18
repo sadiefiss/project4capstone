@@ -2,14 +2,16 @@ from django.shortcuts import render, redirect
 from .forms import AppointmentForm 
 from .models import Flash 
 # from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic.edit import CreateView, DeleteView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.list import ListView
 from .models import Appointment
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 #unsure about this
 from django.contrib.auth.mixins import LoginRequiredMixin 
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required 
+from django.shortcuts import render, get_object_or_404
+from .models import Appointment
 
 
 
@@ -33,7 +35,27 @@ def appointment_success(request):
     return render(request, 'appointments/success.html')
 
 
+#appointment index
+def appointments_index(request):
+    appointments = Appointment.objects.all()
+    return render(request, 'appointmentss/index.html', {'appointments': appointments})
+
+
 # views.py
+
+#appointment detail
+
+def appointment_detail(request, appointment_id):
+    # Retrieve an Appointment object by id or return a 404 error if not found
+    appointment = get_object_or_404(Appointment, pk=appointment_id)
+    
+    # Make sure the logged-in user is the owner of the appointment
+    if request.user != appointment.user:
+        return render(request, 'errors/403.html'), 403
+    
+    # Render the appointment details template with the appointment context
+    return render(request, 'appointments/detail.html', {'appointment': appointment})
+
 
 def home(request):
     # You can add more context or logic here as needed
@@ -85,3 +107,7 @@ class AppointmentDelete(DeleteView):
     model = Appointment
     success_url = '/appointments'
 
+#update view
+class AppointmentUpdate(UpdateView):
+    model = Appointment
+    fields = ['date', 'flash', 'notes']

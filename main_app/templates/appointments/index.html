@@ -1,0 +1,16 @@
+<!-- appointments/index.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>My Appointments</h2>
+  <ul>
+    {% for appointment in appointments %}
+      <li>
+        Appointment on {{ appointment.date }}:
+        <strong>{{ appointment.flash.name }}</strong> - {{ appointment.notes }}
+      </li>
+    {% empty %}
+      <li>No appointments found.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

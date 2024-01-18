@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Appointment Details</h1>
+
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">Appointment on {{ appointment.date|date:"F d, Y" }}</span>
+    {% if appointment.flash %}
+      <p>Design: {{ appointment.flash.name }}</p>
+      <p>Description: {{ appointment.flash.description|linebreaks }}</p>
+    {% endif %}
+    <p>Notes: {{ appointment.notes|linebreaks }}</p>
+  </div>
+  <div class="card-action">
+    <a href="{% url 'appointments_update' appointment.id %}">Edit</a>
+    <a href="{% url 'appointments_delete' appointment.id %}">Delete</a>
+  </div>
+</div>
+
+{% endblock %}
