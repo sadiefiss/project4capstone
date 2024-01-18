@@ -1,0 +1,17 @@
+<!-- success.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <div class="section">
+      <div class="row">
+        <div class="col s12">
+          <h1>Appointment Booked!</h1>
+          <p>Your appointment has been successfully booked. We will send you a confirmation email with the details.</p>
+          <p><a href="{% url 'home' %}" class="btn">Return to Home</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

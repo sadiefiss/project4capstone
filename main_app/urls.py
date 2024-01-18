@@ -1,7 +1,8 @@
-from django.urls import path 
+from django.urls import path, reverse_lazy
 from django.contrib.auth import views as auth_views  # Import Django's authentication views
 from . import views
 from .views import AppointmentCreate
+
 
 
 urlpatterns = [
@@ -11,11 +12,13 @@ urlpatterns = [
     # ... any other URL patterns you have ...
     # Add login and logout URLs using Django's built-in views
     path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    # path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    # path('logout/', auth_views.LogoutView.as_view(next_page=reverse_lazy('home')), name='logout'),
     # ... any other URL patterns you have ...
     path('appointment/create/', AppointmentCreate.as_view(), name='appointment_create'),
     path('appointment/<int:pk>/delete/', views.AppointmentDelete.as_view(), name='appoointment_delete'),
 # New url pattern below
+    path('appointment/success/', views.appointment_success, name='appointment_success'),
     path('accounts/signup/', views.signup, name='signup'),
 ]
 

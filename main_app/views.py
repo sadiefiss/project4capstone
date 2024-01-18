@@ -7,16 +7,31 @@ from django.views.generic.list import ListView
 from .models import Appointment
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+#unsure about this
+from django.contrib.auth.mixins import LoginRequiredMixin 
+from django.contrib.auth.decorators import login_required
+
+
 
 def book_appointment(request):
     if request.method == 'POST':
         form = AppointmentForm(request.POST)
         if form.is_valid():
-            form.save()
+         
+            appointment = form.save(commit=False)  # Create the appointment instance, but don't save it to the DB yet
+            appointment.user = request.user  # Assign the logged-in user   
+            appointment.save()
             return redirect('appointment_success')  # Redirect to a success page or the appointment detail page
     else:
         form = AppointmentForm()
     return render(request, 'appointments/new.html', {'form': form}) 
+#appointment sucsess
+# views.py
+
+def appointment_success(request):
+    # Your view logic here
+    return render(request, 'appointments/success.html')
+
 
 # views.py
 
@@ -25,9 +40,9 @@ def home(request):
     return render(request, 'home.html')  # Ensure 'home.html' exists in your templates directory
 
 
-
+@login_required
 def flash_list(request):
-    flashes = Flash.objects.all()  # Make sure you have a Flash model and it's imported
+    flashes = Flash.objects.filter(appointment__user=request.user) #  updated step 10 Make sure you have a Flash model and it's imported
     return render(request, 'flash/list.html', {'flashes': flashes}) 
 
 def signup(request):
@@ -41,7 +56,7 @@ def signup(request):
       user = form.save()
       # This is how we log a user in via code
       login(request, user)
-      return redirect('index')
+      return redirect('home')
     else:
       error_message = 'Invalid sign up - try again'
   # A bad POST or a GET request, so render signup.html with an empty form
@@ -50,9 +65,18 @@ def signup(request):
   return render(request, 'accounts/signup.html', context)
 
 #create appointment
-class AppointmentCreate(CreateView):
+# class AppointmentCreate(CreateView):
+#     model = Appointment
+#     fields = '__all__'
+
+class AppointmentCreate(LoginRequiredMixin, CreateView):
     model = Appointment
-    fields = '__all__'
+    fields = ['date', 'flash', 'notes']  # Specify the fields you want the user to fill out
+    success_url = '/appointments'  # Adjust this to wherever you want users to go after creating an appointment
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user  # Assign the logged-in user to the appointment
+        return super().form_valid(form)
 
 # APPOINTMENT DELETE
 
