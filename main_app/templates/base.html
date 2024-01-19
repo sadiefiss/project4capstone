@@ -8,24 +8,22 @@
   <title>RITA SALT</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-  <style>
-    body {
-        background-image: url("{% static 'images/stars.jpg' %}");
-        background-size: cover;
-    }
-</style>
+  
+
 </head>
 <body>
   <header class="navbar-fixed">
     <nav>
       <div class="nav-wrapper">
         <ul>
-          <li><a href="{% url 'home' %}" class="left brand-logo">Rita Salt</a></li>
+          <li><a href="{% url 'home' %}" >Rita Salt</a></li>
           <ul class="right"></ul>
           {% if user.is_authenticated %} 
-            <li><a href="{% url 'book_appointment' %}">Book Appointment</a></li>
+            
             <li><a href="{% url 'flashes' %}">View Flash</a></li>
             <li><a href="{% url 'appointments_index' %}">My Appointments</a></li> <!-- New link for My Appointments -->
+            <a href="{% url 'book_appointment' %}" class="waves-effect waves-light btn lime accent-3 book-appointment-btn">Book Appointment</a>
+            <!-- ... -->
             <form action="{% url 'logout' %}" method="POST">
               {% csrf_token %}
               <button type="submit" class="btn">Log Out</button>
@@ -35,8 +33,8 @@
             <li><a href="{% url 'signup' %}">Sign Up</a></li>
             <!-- log In optioh here -->
             <li><a href="{% url 'login' %}">log in</a></li>
-            <!-- log In optioh here -->
-      
+
+            
           {% endif %}
         </ul>
       </div>

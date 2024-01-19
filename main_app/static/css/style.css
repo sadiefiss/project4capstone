@@ -1,21 +1,105 @@
 body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-    body {
-      /* Other styles ... */
-    background: url("{% static 'images/stars.jpg'}") no-repeat center center fixed;
-    background-size: cover;
-  }
-  
-    background-size: cover;
-  }
-  
-  main {
-    flex: 1 0 auto;
-  }
-  
-  footer.page-footer {
-    padding-top: 0;
-    text-align: right;
-  }
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background: url("../images/stars.jpg") no-repeat center center fixed; /* Correct the path if necessary */
+  background-size: cover;
+  color: #CCCCFF; /* Periwinkle color */
+  font-family: Comic Sans MS, Comic Sans, cursive;
+ 
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.nav-wrapper {
+  background-color: #eaff30;
+}
+
+
+.header-image {
+  max-width: 50%; /* Adjust as needed */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Needed for margin auto to work */
+  margin: 20px auto; /* Top and bottom margin 20px, auto to center horizontally */
+} 
+
+/* flash page image */
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.spin-hover {
+  max-width: 400px; /* Adjust this to the size you want */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Needed for margin auto to work */
+  margin: 20px auto; /* Spacing between header-image and spin-hover, centers horizontally */
+  transition: transform 0.5s ease-in-out;
+  cursor: pointer; /* Indicates the image is interactive */
+}
+
+/* Ensure the @keyframes rule is defined for spinning */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Apply the animation on hover */
+.spin-hover:hover {
+  animation: spin 2s infinite linear;
+}
+
+.book-appointment-btn {
+  position: fixed; /* Fixed positioning relative to the viewport */
+  bottom: 0; /* Align to the bottom */
+  left: 0; /* Align to the left */
+  margin: 10px; /* Add some space from the edges */
+  z-index: 1000; /* Ensure it's above other elements */
+} 
+
+.light-periwinkle-text {
+  color: #CCCCFF; /* Light periwinkle color */
+}
+
+
+/* Style for form inputs, NEW.HTML */
+input[type=text], input[type=email], input[type=tel], input[type=password], textarea, select {
+  background-color: #FFFF99; /* Light yellow background color */
+  color: #0000ff; /* Blue text */
+  border: 1px solid #0000ff; /* Blue border */
+}
+
+/* Optional: Style for form inputs on focus to maintain the yellow background */
+input[type=text]:focus, input[type=email]:focus, input[type=tel]:focus, input[type=password]:focus, input[type=date]:focus, textarea:focus, select:focus  {
+  background-color: #FFFF99; /* Light yellow background color */
+  border-bottom: 1px solid #0000ff; /* Blue border for Materialize effect */
+  box-shadow: 0 1px 0 0 #0000ff; /* Blue shadow for Materialize effect */
+}
+
+/* Style for the label text */
+label {
+  color: #FF1493; /* Pink color for the text */
+}
+
+/* Style for the submit button */
+button[type=submit] {
+  background-color: #FF1493; /* Pink color for the button */
+  color: white; /* White text */
+  /* Add other styles for the button as needed */
+}
+
+/* Style for the navigation buttons */
+
+
+
+
+
+footer.page-footer {
+  padding-top: 0;
+  text-align: right;
+  background-color: #eaff30;
+}

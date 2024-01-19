@@ -1,15 +1,24 @@
-<!-- templates/flash/list.html -->
 {% extends 'base.html' %}
 
+{% load static %}  <!-- Correct usage of the static tag -->
+
 {% block content %}
+<div class="light-periwinkle-text">  <!-- This will apply the color to all content within the div -->
   <h2>Available Tattoo Designs</h2>
-  <div>
+  <div class="row">  <!-- Using Materialize's grid system for layout -->
     {% for flash in flashes %}
-      <div>
+      <div class="col s12 m6">  <!-- Correct column sizes for Materialize grid -->
         <h3>{{ flash.name }}</h3>
-        <img src="{{ flash.image.url }}" alt="{{ flash.name }}">
+        <div class="col s12 center-align">
+          <img src="{% static 'images/flash.png' %}" alt="flashes" class="header-image">
+  
+
+      </div>
         <p>{{ flash.description }}</p>
       </div>
+    {% empty %}
+      <p>No designs available at the moment.</p>
     {% endfor %}
   </div>
+</div>  <!-- Close the light-periwinkle-text div here -->
 {% endblock %}
