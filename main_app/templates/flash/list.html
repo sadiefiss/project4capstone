@@ -8,9 +8,10 @@
   <div class="row">  <!-- Using Materialize's grid system for layout -->
     {% for flash in flashes %}
       <div class="col s12 m6">  <!-- Correct column sizes for Materialize grid -->
-        <h3>{{ flash.name }}</h3>
+        <p>Debug: {{ flash.name }}</p>
         <div class="col s12 center-align">
-          <img src="{% static 'images/flash.png' %}" alt="flashes" class="header-image">
+          <img src="{% static 'images/flash.png' %}" alt="Flash Tattoo Design" class="header-image">
+
   
 
       </div>

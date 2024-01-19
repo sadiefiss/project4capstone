@@ -1,0 +1,1 @@
+web: gunicorn project4capstone.wsgi
