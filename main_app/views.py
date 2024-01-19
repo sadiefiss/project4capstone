@@ -38,7 +38,7 @@ def appointment_success(request):
 #appointment index
 def appointments_index(request):
     appointments = Appointment.objects.all()
-    return render(request, 'appointmentss/index.html', {'appointments': appointments})
+    return render(request, 'appointments/index.html', {'appointments': appointments})
 
 
 # views.py
