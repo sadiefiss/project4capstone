@@ -15,8 +15,12 @@ main {
 
 .nav-wrapper {
   background-color: #eaff30;
+  
 }
 
+.nav-wrapper a, .nav-wrapper li {
+  color: #1616c9 !important;
+}
 
 .header-image {
   max-width: 50%; /* Adjust as needed */
@@ -91,8 +95,6 @@ button[type=submit] {
   color: white; /* White text */
   /* Add other styles for the button as needed */
 }
-
-/* Style for the navigation buttons */
 
 
 
