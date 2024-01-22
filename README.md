@@ -1,15 +1,16 @@
 READ ME
 
 RITA SALT
+
 App Title: RITA SALT - Tattoo Design Showcase and Appointment Management
+
 Description
 Here I have created a Tatoo booking  web application tailored for my dear friend and  Tatoo artist Rita Salt. It provides a platform to explore various tattoo designs, commonly referred to as 'flashes', and manage tattoo appointments. This application integrates a sleek, user-friendly interface with functionalities that cater to both client and artist.
 Screenshot(s)
 ￼![RITA SALT Home Page](static/images/webhome.png)
 ![My Appointments](static/images/appointment.png)
 
-￼
-Technologies Used
+￼Technologies Used
 * HTML5
 * CSS3 (Materialize Framework)
 * Python (Django Framework)
